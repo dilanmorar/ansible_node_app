@@ -1,0 +1,32 @@
+---
+- hosts: all
+  remote_user: root
+
+  tasks:
+  - name: apt update
+    apt:
+      update_cache: yes
+      upgrade: yes
+
+  - name: install nginx
+    apt:
+      pkg: nginx
+
+  - name: install git
+    apt:
+      pkg: git
+
+  - name: install nodejs
+    apt:
+      pkg: nodejs
+
+  - name: install npm
+    apt:
+      pkg: npm
+
+  - name: install npm pm2
+    npm:
+      name: pm2
+      global: yes
+      production: yes
+      state: present

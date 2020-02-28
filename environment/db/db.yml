@@ -1,0 +1,44 @@
+---
+- hosts: all
+  remote_user: root
+
+  tasks:
+
+    - name: add mongo packages
+      apt_key:
+        id: 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+        keyserver: keyserver.ubuntu.com
+
+    - name: add specific mongo 3.2
+      apt_repository:
+        repo: 'deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse'
+        state: present
+
+    - name: install packages
+      apt:
+        pkg:
+          - mongodb-org
+        allow_unauthenticated: yes
+
+    - name: Restart mongodb
+      service:
+        name: mongod
+        state: restarted
+        enabled: yes
+
+    - name: Remove mongod.conf
+      file:
+        path: /etc/mongod.conf
+        state: absent
+
+    - name: Sync mongod.conf files
+      synchronize:
+        src: /vagrant/environment/db/mongod.conf
+        dest: /etc/mongod.conf
+        mode: pull
+
+    - name: Restart mongodb
+      service:
+        name: mongod
+        state: restarted
+        enabled: yes
