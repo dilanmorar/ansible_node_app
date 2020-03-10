@@ -8,6 +8,10 @@ This project uses ansible to configure. It already contains the code for the app
 
 ## Running the app
 
+To start up the machine:
+```
+vagrant up
+```
 Enter the machine containing the app using:
 ```
 vagrant ssh app
