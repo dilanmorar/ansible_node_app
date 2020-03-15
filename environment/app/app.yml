@@ -30,3 +30,27 @@
       global: yes
       production: yes
       state: present
+
+  - name: enter app directory
+    shell: cd /home/ubuntu/app
+
+  - name: installing ejs, mongoose and express
+    shell: sudo npm install ejs mongoose express
+
+  - name: populating posts page
+    shell: node seeds/seed.js
+
+  - name: removing default
+    shell: sudo rm /etc/nginx/sites-enabled/default
+
+  - name: replacing default
+    shell: sudo ln -s /home/ubuntu/environment/app/default /etc/nginx/sites-enabled/default
+
+  - name: stopping nginx
+    shell: sudo systemctl stop nginx
+
+  - name: starting nginx
+    shell: sudo systemctl start nginx
+
+  - name: nginx
+    shell: sudo nginx -t
