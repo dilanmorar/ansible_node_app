@@ -4,7 +4,7 @@ This project uses ansible to provision a nodejs app and a mongo database onto vi
 
 ## Ansible
 
- Ansible is an open-source software provisioning, configuration management and application deployment tool.
+ Ansible is an open-source software provisioning, configuration management and application deployment tool. It is designed for multi-tier deployments. It uses a simple language YAML which used when creating playbooks. It works by connecting to your nodes and pushing out small programs.
 
 ## Provisioning
 
