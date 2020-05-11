@@ -1,10 +1,28 @@
-# ansible node app
+# ansible nodejs app
 
-This project uses ansible to configure. It already contains the code for the app in the project and so
+This project uses ansible to provision a nodejs app and a mongo database onto virtual machines using playbooks. It will link the app and database together. This project already contains the code for the app so the aim of this is to use ansible.
 
-## ansible
+## Ansible
 
  Ansible is an open-source software provisioning, configuration management and application deployment tool.
+
+## Provisioning
+
+### App
+
+In the ansible app.yml playbook, the sources list are updated and any of the packages available are upgraded. The playbook then installs nginx, git, nodejs and a package manager (pm2). ejs, mongoose and express are then installed, then posts page is seeded, nginx reverse proxy is added and nginx is restarted.
+
+### Database
+
+In the ansible db.yml playbook the mongo packages are added and then the specific mongo 3.2 is added. Mongodb is restarted and the mongod.conf is replaced with a bindIp of 0.0.0.0 and port 27017 and mongodb is restarted again.
+
+## Requirements
+
+Downloads required:
+- download vagrant 2.2.6
+- download oracle vm virtualbox 6.0.14
+
+Ansible is installed in the vagrantfile when the virtual machines spin up so no need to install ansible on your local machine.
 
 ## Running the app
 
@@ -24,7 +42,8 @@ In the command line run the following code to start running the app:
 ```
 node app.js
 ```
+## Loading and using app
 
-To see the app running type in 'development.local:3000' in the web browser
+To see the app running go to: http://development.local:3000
 
 For more information on using this app https://github.com/dilanmorar/node-sample-app
